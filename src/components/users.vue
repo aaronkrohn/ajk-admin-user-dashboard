@@ -1,6 +1,10 @@
 <template>
   <div id="users">
-    Users!
+    <ul>
+      <li v-for="user in users">
+        {{ user.username }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -9,19 +13,24 @@ import { UserService } from './../services/userService'
 
 export default {
   name: 'users',
-  methods: {
-
-  },
-  components: {
-
+  data: () => {
+    return {
+      users: null
+    }
   },
   created() {
-    debugger;
-    UserService.all().then(console.log);
-  }
+    UserService.all().then(users => {
+      this.users = users;
+    });
+  },
 }
 </script>
 
 <style lang="scss">
-
+ul {
+  list-style-type: circle;
+}
+li {
+  display: list-item;
+}
 </style>

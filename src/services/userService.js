@@ -9,7 +9,7 @@ export class UserService {
             .then(snapshot => snapshot.val());
     }
 
-    static create('users') {
+    static create() {
         return firebase.database()
             .ref('/users/')
             .push()
@@ -20,4 +20,5 @@ export class UserService {
         return firebase.database()
             .ref('/users/' + uid)
             .remove();
+    }
 }
